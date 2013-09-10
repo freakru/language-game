@@ -4,6 +4,8 @@
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   App = function() {
+    this.lives = 3;
+    this.score = 0;
     this.languages = [
       {
         'key': 'bg',
@@ -27,7 +29,7 @@
         'text': 'A flor é a estrutura reprodutora característica das plantas denominadas espermatófitas ou fanerogâmicas.'
       }
     ];
-    this.run = function() {
+    this.newQuestion = function() {
       var i, idx, key, languages, name, names, text, _i, _len, _ref;
       languages = this.languages;
       idx = Math.floor(Math.random() * languages.length);
@@ -42,11 +44,42 @@
         }
         names.push(languages[i].name);
       }
+      $("#btn-0").data('correctAnswer', true);
       for (i = _i = 0, _len = names.length; _i < _len; i = ++_i) {
         name = names[i];
         $("#btn-" + i).text(name);
       }
-      $('#language').text(text);
+      return $('#language').text(text);
+    };
+    this.answer = function(isCorrect) {
+      if (this.lives === 0) {
+        return this.gameOver();
+      }
+      if (!isCorrect) {
+        this.lives--;
+      } else {
+        this.score += 100;
+      }
+      this.updateStats();
+      return this.newQuestion();
+    };
+    this.gameOver = function() {
+      console.log('game over');
+      return false;
+    };
+    this.updateStats = function() {
+      $('#lives').text("Lives: " + this.lives);
+      return $('#score').text("Score: " + this.score);
+    };
+    this.run = function() {
+      var _this = this;
+      this.newQuestion();
+      $('.answer').on('click', function(e) {
+        var isCorrect;
+        isCorrect = $(e.currentTarget).data('correctAnswer');
+        console.log(isCorrect);
+        _this.answer(isCorrect);
+      });
     };
   };
 
