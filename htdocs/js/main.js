@@ -4,81 +4,91 @@
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   App = function() {
-    this.lives = 3;
-    this.score = 0;
-    this.languages = [
-      {
-        'key': 'bg',
-        'name': 'Bulgarian',
-        'text': 'Често столицата е център на дейности от много голямо значение за страната - политически, икономически, културни и други.'
-      }, {
-        'key': 'cs',
-        'name': 'Czech',
-        'text': 'Hlavní město představuje správní středisko a symbol určitého území, typicky státu nebo většího správního nebo samosprávného celku.'
-      }, {
-        'key': 'en',
-        'name': 'English',
-        'text': 'Three supporters taken to hospital and ten more injured in brawl at city café on Sunday night after allegedly being ‘set upon’ by Ukrainian group.'
-      }, {
-        'key': 'mn',
-        'name': 'Mongolian',
-        'text': 'Дэлхийн хамгийн том хотууд нь заримдаа улсын нийслэл биш байдаг.'
-      }, {
-        'key': 'pt',
-        'name': 'Português',
-        'text': 'A flor é a estrutura reprodutora característica das plantas denominadas espermatófitas ou fanerogâmicas.'
-      }
-    ];
+    this.languages = [['aa', 'Afar'], ['ab', 'Abkhaz'], ['ae', 'Avestan'], ['afa', 'Luganda'], ['afa', 'Mawu'], ['ak', 'Akan'], ['akk', 'Akkadian'], ['alg', 'Abenaki'], ['alg', 'Algonquin'], ['alg', 'Mohican'], ['alg', 'Potawatomi'], ['alg', 'Powhatan'], ['am', 'Amharic'], ['an', 'Aragonese'], ['ang', 'Anglo'], ['ar', 'Arabic'], ['ar', 'Darja'], ['arw', 'Arawak'], ['arc', 'Aramaic'], ['arn', 'Mapundungun'], ['art', 'Lojban'], ['as', 'Assamese'], ['ast', 'Asturian'], ['at', 'Haiti'], ['aus', 'Olkola'], ['aus', 'Pintupi-Luritja'], ['aus', 'Wagiman'], ['aus', 'Warlpiri'], ['av', 'Avar'], ['ay', 'Aymara'], ['az', 'Azerbaijani'], ['ba', 'Bashkir'], ['bai', 'Dschang'], ['bas', 'Basaa'], ['bat', 'Sudovian'], ['btk', 'Batak'], ['be', 'Belarusian'], ['bem', 'Bemba'], ['bg', 'Bulgarian'], ['bh', 'Bihari'], ['bi', 'Bislama'], ['bla', 'Blackfoot'], ['bm', 'Bambara'], ['bn', 'Bengali'], ['bnt', 'Bangi'], ['bnt', 'Ila'], ['bnt', 'Masaba'], ['bnt', 'Ntomba'], ['bo', 'Tibetan'], ['br', 'Breton'], ['bs', 'Bosnian'], ['ca', 'Catalan'], ['ca', 'Valencian'], ['cai', 'Ch'], ['cai', 'Garifuna'], ['cai', 'Guahibo'], ['cai', 'Miskito'], ['cai', 'Oluta'], ['cai', 'Jatibonicu'], ['cai', 'Zoque'], ['car', 'Caribe'], ['ce', 'Chechen'], ['ceb', 'Cebuano'], ['ch', 'Chamorro'], ['cho', 'Choctaw'], ['chk', 'Chuuk'], ['chr', 'Cherokee'], ['chy', 'Cheyenne'], ['co', 'Corsican'], ['cop', 'Coptic'], ['cpe', 'Afro-Seminole'], ['cpe', 'Gullah'], ['cpe', 'Jamaican'], ['cpe', 'Port'], ['cpf', ''], ['cpf', ''], ['cr', 'Cree'], ['crp', 'Fanagolo'], ['crp', 'Lingua'], ['cs', 'Czech'], ['cu', 'Old'], ['cv', 'Chuvash'], ['cy', 'Welsh'], ['da', 'Danish'], ['de', 'German'], ['del', 'Lenape'], ['dua', 'Duala'], ['dra', 'Brahui'], ['dv', 'Divehi'], ['dz', 'Dzongkha'], ['ee', 'Ewe'], ['efi', 'Efik'], ['el', 'Greek'], ['el', 'Griko'], ['en', 'English'], ['enm', 'Middle'], ['eo', 'Esperanto'], ['es', 'Spanish'], ['et', 'Estonian'], ['eu', 'Basque'], ['fa', 'Persian'], ['ff', 'Fula'], ['fi', 'Finnish'], ['fiu', 'Karelian'], ['fiu', 'Veps'], ['fj', 'Fijian'], ['fo', 'Faroese'], ['fon', 'Fon'], ['fr', 'French'], ['fro', 'Old'], ['fur', 'Friulian'], ['fy', 'Frisian'], ['ga', 'Irish'], ['gd', 'Scottish'], ['gem', 'Alsatian'], ['gem', 'Bavarian'], ['gem', 'Cimbrian'], ['gem', 'Kölsch'], ['gem', 'Mennonite'], ['gez', 'Ge'], ['gl', 'Galician'], ['gmh', 'Middle'], ['gn', 'Guarani'], ['goh', 'Old'], ['got', 'Gothic'], ['grc', 'Ancient'], ['gu', 'Gujarati'], ['gv', 'Manx'], ['ha', 'Hausa'], ['haw', 'Hawaiian'], ['he', 'Hebrew'], ['hi', 'Hindi'], ['hil', 'Hiligaynon'], ['hmn', 'Hmong'], ['ho', 'Hiri'], ['hr', 'Croatian'], ['hu', 'Hungarian'], ['hy', 'Armenian'], ['hz', 'Herero'], ['ia', 'Interlingua'], ['id', 'Indonesian'], ['ie', 'Interlingue'], ['ig', 'Igbo'], ['ii', 'Sichuan'], ['ik', 'Iñupiaq'], ['ilo', 'Ilocano'], ['inh', 'Ingush'], ['io', 'Ido'], ['ira', 'Dari'], ['ira', 'Ishkashmi'], ['iro', 'Mingo'], ['iro', 'Onandaga'], ['iro', 'Wyandot'], ['is', 'Old'], ['is', 'Icelandic'], ['it', 'Italian'], ['iu', 'Inuktitut'], ['jpr', 'Judeo-Persian'], ['jrb', 'Judeo-Arabic'], ['ja', 'Japanese'], ['jv', 'Javanese'], ['ka', 'Georgian'], ['kab', 'Kabyle'], ['kg', 'Kongo'], ['ki', 'Kikuyu'], ['kj', 'Kwanyama'], ['kk', 'Kazakh'], ['kl', 'Greenlandic'], ['km', 'Khmer'], ['kn', 'Kannada'], ['ko', 'Korean'], ['kos', 'Kosraean'], ['kr', 'Kanuri'], ['ks', 'Kashmiri'], ['ku', 'Kurdish'], ['kv', 'Komi'], ['kw', 'Cornish'], ['ky', 'Kirghiz'], ['la', 'Latin'], ['lad', 'Ladino'], ['lb', 'Luxemburgish'], ['lg', 'Ganda'], ['li', 'Limburgan'], ['ln', 'Lingala'], ['lo', 'Lao'], ['lol', 'Mongo-Nkundu'], ['loz', 'Lozi'], ['lt', 'Lithuanian'], ['lu', 'Luba-Katanga'], ['lv', 'Latvian'], ['man', 'Mandinka'], ['map', 'Bisaya'], ['map', 'Carolinian'], ['map', 'Marquesan'], ['map', 'Mokilese'], ['map', 'Ponapean'], ['map', 'Rotuman'], ['map', 'Roviana'], ['map', 'Sa'], ['map', 'Tarawan'], ['map', 'Woleaian'], ['mg', 'Malagasy'], ['mh', 'Marshallese'], ['mi', 'Maori'], ['mic', 'Micmac'], ['mis', 'Ainu'], ['mis', 'Chukchi'], ['mis', 'Etruscan'], ['mis', 'Nganasan'], ['mk', 'Macedonian'], ['ml', 'Malayalam'], ['mn', 'Mongolian'], ['mno', 'Manobo'], ['mo', 'Moldavian'], ['mos', 'Mossi'], ['mr', 'Marathi'], ['ms', 'Malay'], ['mt', 'Maltese'], ['mus', 'Muskogee'], ['my', 'Burmese'], ['myn', 'Kekchi'], ['na', 'Nauruan'], ['nah', 'Náhuatl'], ['nai', 'Alabama'], ['nai', 'Chickasaw'], ['nai', 'Chontal'], ['nai', 'Comanche'], ['nai', 'Hopi'], ['nai', 'Koasati'], ['nai', 'Nez'], ['nai', 'Papago-Pima'], ['nai', 'Seri'], ['nai', 'Wintu'], ['nd', 'North'], ['nds', 'Old'], ['ne', 'Nepali'], ['ng', 'Ndonga'], ['nic', 'Bobo'], ['nic', 'Boko'], ['nic', 'Buli'], ['nl', 'Dutch'], ['no', 'Norwegian'], ['non', 'Old'], ['nr', 'South'], ['nv', 'Navajo'], ['ny', 'Chichewa'], ['oc', 'Occitan'], ['oj', 'Ojibwa'], ['oj', 'Ottawa'], ['om', 'Oromo'], ['or', 'Oriya'], ['os', 'Ossetic'], ['oto', 'Otomi'], ['pa', 'Panjabi'], ['paa', 'Ekari'], ['pag', 'Pangasinan'], ['pam', 'Pampangan'], ['pap', 'Papiamentu'], ['pau', 'Palauan'], ['phi', 'Ivatan'], ['phi', 'Magindanoan'], ['phi', 'Maranao'], ['pi', 'Pali'], ['pl', 'Polish'], ['ps', 'Pashto'], ['pt', 'Portuguese'], ['qu', 'Quechua'], ['rap', 'Rapanui'], ['rm', 'Raeto-Romance'], ['rn', 'Rundi'], ['ro', 'Romanian'], ['roa', 'Ladin'], ['roa', 'Ligurian'], ['roa', 'Lombard'], ['roa', 'Piedmontese'], ['roa', 'Romagnolo'], ['roa', 'Sicilian'], ['roa', 'Veneto'], ['rom', 'Romany'], ['ru', 'Russian'], ['rw', 'Kinyarwanda'], ['sa', 'Sanskrit'], ['sai', 'Mayangna'], ['sai', 'Nhengatu'], ['sai', 'Paumarí'], ['sc', 'Sardinian'], ['sc', 'Sardinian'], ['sc', 'Sardinian'], ['sco', 'Scots'], ['sd', 'Sindhi'], ['se', 'Kildi'], ['se', 'Northern'], ['sg', 'Sango'], ['si', 'Sinhalese'], ['sio', 'Lakota'], ['sio', 'Siouan'], ['sk', 'Slovak'], ['sl', 'Slovene'], ['sm', 'Samoan'], ['sn', 'Shona'], ['so', 'Somali'], ['sq', 'Albanian'], ['sq', 'Arbëresh'], ['sr', 'Serbian'], ['ss', 'Swati'], ['st', 'Southern'], ['su', 'Sundanese'], ['sv', 'Swedish'], ['sw', 'Swahili'], ['ta', 'Tamil'], ['te', 'Telugu'], ['tg', 'Tajik'], ['th', 'Thai'], ['ti', 'Tigrinya'], ['tk', 'Turkmen'], ['tl', 'Tagalog'], ['tli', 'Tlingit'], ['tn', 'Tswana'], ['to', 'Tonga'], ['tr', 'Turkish'], ['ts', 'Tsonga'], ['tt', 'Tatar'], ['tw', 'Twi'], ['ty', 'Tahitian'], ['ug', 'Uighur'], ['uk', 'Ukrainian'], ['uz', 'Uzbek'], ['ve', 'Venda'], ['vi', 'Vietnamese'], ['vo', 'Volapük'], ['wa', 'Walloon'], ['wen', 'Upper'], ['wo', 'Wolof'], ['xh', 'Xhosa'], ['yi', 'Yiddish'], ['yo', 'Yoruba'], ['ypk', 'Yu'], ['za', 'Chuang'], ['zap', 'Zapotec'], ['zh', 'Chinese'], ['zu', 'Zulu']];
+    this.languages = [['bg', 'Bulgarian'], ['bs', 'Bosnian'], ['cs', 'Czech'], ['en', 'English'], ['mn', 'Mongolian'], ['pt', 'Portuguese'], ['sa', 'Sanskrit'], ['tg', 'Tajik'], ['uk', 'Ukrainian'], ['vi', 'Vietnamese'], ['vo', 'Volapük']];
+    this.sentences = {
+      bg: ['Често столицата е център на дейности от много голямо значение за страната - политически, икономически, културни и други.'],
+      bs: ['U ovo doba (do 1463.) spadaju jezični spomenici koje, u različitim stepenima, oblicima i na različitim mjestima, bosanski jezik dijeli s hrvatskim i srpskim.', 'To, što veći dio tih jezičnih spomenika nije formalno integrisan u korpus bosanske pismenosti nije previše relevantno, jer je nijedan jezik ne nastaje niotkuda.'],
+      cs: ['Hlavní město představuje správní středisko a symbol určitého území, typicky státu nebo většího správního nebo samosprávného celku.'],
+      en: ['Three supporters taken to hospital and ten more injured in brawl at city café on Sunday night after allegedly being ‘set upon’ by Ukrainian group.'],
+      mn: ['Дэлхийн хамгийн том хотууд нь заримдаа улсын нийслэл биш байдаг.'],
+      pt: ['A flor é a estrutura reprodutora característica das plantas denominadas espermatófitas ou fanerogâmicas.'],
+      sa: ['अवश्यं आगन्तव्य, न विस्मर्तव्यम्'],
+      tg: ['Забони точикӣ диққати олимон ва нависандагони оламро ба худ ҷалб кардааст.', 'Ин забон ба хонаводаи забонҳои ҳинду-аврупоӣ дохил мешавад.'],
+      uk: ['Фізичні вправи в оздоровчих цілях використовувалися впродовж багатьох тисячоліть.', 'Найбільш ранні рукописи, в яких мовиться про лікувальну дію рухів, масажу, знайдені в Китаї.'],
+      vi: ['Phong cách và hình dạng nhà cửa tùy theo từng vùng và miền.'],
+      vo: ['In Suomiyän vöno feilan yunik älifom.', 'Do äbinos vob sevärik ad befeilön länedi neflukik, ai äbinom ye fredik.', 'In län at, kiöp pöp binon smalik, mens lifons soaliko ko oks it e ko nat.']
+    };
+    this.newGame = function() {
+      this.lives = 3;
+      this.score = 0;
+      this.updateStats();
+      this.newQuestion();
+    };
     this.newQuestion = function() {
-      var i, idx, key, languages, name, names, text, _i, _len, _ref;
+      var i, idx, key, language, languages, name, names, text, _i, _len, _ref;
       languages = this.languages;
       idx = Math.floor(Math.random() * languages.length);
-      key = languages[idx].key;
-      name = languages[idx].name;
-      text = languages[idx].text;
+      language = languages[idx];
+      key = language[0];
+      this.correctAnswer = name = language[1];
+      text = this.sentences[key][0];
       names = [name];
       while (names.length < 3) {
         i = Math.floor(Math.random() * languages.length);
-        if (_ref = languages[i].name, __indexOf.call(names, _ref) >= 0) {
+        if (_ref = languages[i][1], __indexOf.call(names, _ref) >= 0) {
           continue;
         }
-        names.push(languages[i].name);
+        names.push(languages[i][1]);
       }
       $("#btn-0").data('correctAnswer', true);
       for (i = _i = 0, _len = names.length; _i < _len; i = ++_i) {
         name = names[i];
         $("#btn-" + i).text(name);
       }
-      return $('#language').text(text);
+      $('#language').text(text);
+      $('#main').show();
+      $('#wrong-guess, #right-guess, #game-over').hide();
     };
-    this.answer = function(isCorrect) {
-      if (this.lives === 0) {
-        return this.gameOver();
-      }
+    this.guess = function(isCorrect) {
       if (!isCorrect) {
         this.lives--;
+        $('.correct-answer').text(this.correctAnswer);
+        if (this.lives === 0) {
+          return this.gameOver();
+        }
+        $('#main').hide();
+        $('#wrong-guess').show();
       } else {
         this.score += 100;
+        $('#main').hide();
+        $('#right-guess').show();
       }
-      this.updateStats();
-      return this.newQuestion();
+      return this.updateStats();
     };
     this.gameOver = function() {
-      console.log('game over');
+      $('#game-over').show();
+      $('#main').hide();
       return false;
     };
     this.updateStats = function() {
       $('#lives').text("Lives: " + this.lives);
-      return $('#score').text("Score: " + this.score);
+      return $('.score').text(this.score);
     };
     this.run = function() {
       var _this = this;
-      this.newQuestion();
-      $('.answer').on('click', function(e) {
+      this.newGame();
+      $('.guess').on('click', function(e) {
         var isCorrect;
         isCorrect = $(e.currentTarget).data('correctAnswer');
         console.log(isCorrect);
-        _this.answer(isCorrect);
+        _this.guess(isCorrect);
+      });
+      $('.new-question').on('click', function(e) {
+        _this.newQuestion();
+      });
+      $('.new-game').on('click', function(e) {
+        _this.newGame();
       });
     };
   };

@@ -1,6 +1,4 @@
 App = ->
-    @lives = 3
-    @score = 0
     
     @languages = [
         ['aa','Afar']
@@ -346,42 +344,55 @@ App = ->
         ['zu','Zulu']
     ]
 
-@sentences = [
-    bg: ['Често столицата е център на дейности от много голямо значение за страната - политически, икономически, културни и други.']
-    bs: ['U ovo doba (do 1463.) spadaju jezični spomenici koje, u različitim stepenima, oblicima i na različitim mjestima, bosanski jezik dijeli s hrvatskim i srpskim.', 'To, što veći dio tih jezičnih spomenika nije formalno integrisan u korpus bosanske pismenosti nije previše relevantno, jer je nijedan jezik ne nastaje niotkuda.']
-    cs: ['Hlavní město představuje správní středisko a symbol určitého území, typicky státu nebo většího správního nebo samosprávného celku.']
-    en: ['Three supporters taken to hospital and ten more injured in brawl at city café on Sunday night after allegedly being ‘set upon’ by Ukrainian group.']
-    mn: ['Дэлхийн хамгийн том хотууд нь заримдаа улсын нийслэл биш байдаг.']
-    pt: ['A flor é a estrutura reprodutora característica das plantas denominadas espermatófitas ou fanerogâmicas.']
-    sa: ['अवश्यं आगन्तव्य, न विस्मर्तव्यम्']
-    tg: ['Забони точикӣ диққати олимон ва нависандагони оламро ба худ ҷалб кардааст.', 'Ин забон ба хонаводаи забонҳои ҳинду-аврупоӣ дохил мешавад.']
-    uk: ['Фізичні вправи в оздоровчих цілях використовувалися впродовж багатьох тисячоліть.', 'Найбільш ранні рукописи, в яких мовиться про лікувальну дію рухів, масажу, знайдені в Китаї.']
-    vi: ['Phong cách và hình dạng nhà cửa tùy theo từng vùng và miền.']
-    vo: ['In Suomiyän vöno feilan yunik älifom.', 'Do äbinos vob sevärik ad befeilön länedi neflukik, ai äbinom ye fredik.', 'In län at, kiöp pöp binon smalik, mens lifons soaliko ko oks it e ko nat.']
-    zh: ['']
-]
-
-
     @languages = [
-        {} = 'key': 'bg', 'name': 'Bulgarian', 'text': 'Често столицата е център на дейности от много голямо значение за страната - политически, икономически, културни и други.'
-        {} = 'key': 'cs', 'name': 'Czech', 'text': 'Hlavní město představuje správní středisko a symbol určitého území, typicky státu nebo většího správního nebo samosprávného celku.'
-        {} = 'key': 'en', 'name': 'English', 'text': 'Three supporters taken to hospital and ten more injured in brawl at city café on Sunday night after allegedly being ‘set upon’ by Ukrainian group.'
-        {} = 'key': 'mn', 'name': 'Mongolian', 'text': 'Дэлхийн хамгийн том хотууд нь заримдаа улсын нийслэл биш байдаг.'
-        {} = 'key': 'pt', 'name': 'Português', 'text': 'A flor é a estrutura reprodutora característica das plantas denominadas espermatófitas ou fanerogâmicas.'
+        ['bg','Bulgarian']
+        ['bs','Bosnian']
+        ['cs','Czech']
+        ['en','English']
+        ['mn','Mongolian']
+        ['pt','Portuguese']
+        ['sa','Sanskrit']
+        ['tg','Tajik']
+        ['uk','Ukrainian']
+        ['vi','Vietnamese']
+        ['vo','Volapük']
     ]
+
+    @sentences =
+        bg: ['Често столицата е център на дейности от много голямо значение за страната - политически, икономически, културни и други.']
+        bs: ['U ovo doba (do 1463.) spadaju jezični spomenici koje, u različitim stepenima, oblicima i na različitim mjestima, bosanski jezik dijeli s hrvatskim i srpskim.', 'To, što veći dio tih jezičnih spomenika nije formalno integrisan u korpus bosanske pismenosti nije previše relevantno, jer je nijedan jezik ne nastaje niotkuda.']
+        cs: ['Hlavní město představuje správní středisko a symbol určitého území, typicky státu nebo většího správního nebo samosprávného celku.']
+        en: ['Three supporters taken to hospital and ten more injured in brawl at city café on Sunday night after allegedly being ‘set upon’ by Ukrainian group.']
+        mn: ['Дэлхийн хамгийн том хотууд нь заримдаа улсын нийслэл биш байдаг.']
+        pt: ['A flor é a estrutura reprodutora característica das plantas denominadas espermatófitas ou fanerogâmicas.']
+        sa: ['अवश्यं आगन्तव्य, न विस्मर्तव्यम्']
+        tg: ['Забони точикӣ диққати олимон ва нависандагони оламро ба худ ҷалб кардааст.', 'Ин забон ба хонаводаи забонҳои ҳинду-аврупоӣ дохил мешавад.']
+        uk: ['Фізичні вправи в оздоровчих цілях використовувалися впродовж багатьох тисячоліть.', 'Найбільш ранні рукописи, в яких мовиться про лікувальну дію рухів, масажу, знайдені в Китаї.']
+        vi: ['Phong cách và hình dạng nhà cửa tùy theo từng vùng và miền.']
+        vo: ['In Suomiyän vöno feilan yunik älifom.', 'Do äbinos vob sevärik ad befeilön länedi neflukik, ai äbinom ye fredik.', 'In län at, kiöp pöp binon smalik, mens lifons soaliko ko oks it e ko nat.']
+
+    @newGame = () ->
+        @lives = 3
+        @score = 0
+        @updateStats()
+        @newQuestion()
+        return
+
 
     @newQuestion = () ->
         languages = @languages
         idx = Math.floor(Math.random() * languages.length)
-        key = languages[idx].key
-        name = languages[idx].name
-        text = languages[idx].text
+        language = languages[idx]
+        key = language[0]
+        @correctAnswer = name = language[1]       
+
+        text = @sentences[key][0]
     
         names = [name]
         while names.length < 3
             i = Math.floor(Math.random() * languages.length)
-            continue if languages[i].name in names
-            names.push languages[i].name
+            continue if languages[i][1] in names
+            names.push languages[i][1]
     
         $("#btn-0").data 'correctAnswer', true
         for name, i in names
@@ -389,39 +400,51 @@ App = ->
     
         $('#language').text(text)
 
+        $('#main').show()
+        $('#wrong-guess, #right-guess, #game-over').hide()
+        return
 
-
-    @answer = (isCorrect) ->
-        return @gameOver() if @lives is 0
+    @guess = (isCorrect) ->
         if !isCorrect
             @lives--
+            $('.correct-answer').text(@correctAnswer)
+            return @gameOver() if @lives is 0            
+            $('#main').hide()
+            $('#wrong-guess').show()
         else
             @score += 100
+            $('#main').hide()
+            $('#right-guess').show()
         @updateStats()
-        @newQuestion()
-
 
 
     @gameOver = () ->
-        console.log 'game over'
+        $('#game-over').show();
+        $('#main').hide();
         return false
-
 
 
     @updateStats = () ->
         $('#lives').text "Lives: #{@lives}"
-        $('#score').text "Score: #{@score}"
-
+        $('.score').text @score
 
     
     @run = () ->
-        @newQuestion()
+        @newGame()
 
-        $('.answer').on 'click', (e) =>
+        $('.guess').on 'click', (e) =>
             # e.currentTarget - avoid issue on using $(this) in coffe function
             isCorrect = $(e.currentTarget).data('correctAnswer')
             console.log isCorrect
-            @answer isCorrect
+            @guess isCorrect
+            return
+
+        $('.new-question').on 'click', (e) =>
+            @newQuestion()
+            return
+
+        $('.new-game').on 'click', (e) =>
+            @newGame()
             return
         return
     return

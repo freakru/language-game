@@ -4,6 +4,18 @@ body {
   padding-bottom: 20px;
 }
 
+#wrong-guess {
+  display: none;
+}
+
+#right-guess {
+  display: none;
+}
+
+#game-over {
+  display: none;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
