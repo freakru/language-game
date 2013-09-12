@@ -407,7 +407,8 @@ App = ->
     @guess = (isCorrect) ->
         if !isCorrect
             @lives--
-            $('.correct-answer').text(@correctAnswer)
+            wikiLink = "<a href='http://en.wikipedia.org/wiki/#{@correctAnswer}_language' target='_blank'>#{@correctAnswer}</a>"
+            $('.correct-answer').html(wikiLink)
             return @gameOver() if @lives is 0            
             $('#main').hide()
             $('#wrong-guess').show()

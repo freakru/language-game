@@ -51,9 +51,11 @@
       $('#wrong-guess, #right-guess, #game-over').hide();
     };
     this.guess = function(isCorrect) {
+      var wikiLink;
       if (!isCorrect) {
         this.lives--;
-        $('.correct-answer').text(this.correctAnswer);
+        wikiLink = "<a href='http://en.wikipedia.org/wiki/" + this.correctAnswer + "_language' target='_blank'>" + this.correctAnswer + "</a>";
+        $('.correct-answer').html(wikiLink);
         if (this.lives === 0) {
           return this.gameOver();
         }
