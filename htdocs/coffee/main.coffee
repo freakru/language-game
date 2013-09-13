@@ -397,11 +397,12 @@ App = ->
         return
 
     @guess = (isCorrect) ->
+        wikiLink = "<a href='http://en.wikipedia.org/wiki/#{@correctAnswer}_language' target='_blank'>#{@correctAnswer}</a>"
+        $('.correct-answer').html(wikiLink)
+
         if !isCorrect
             @lives--
-            wikiLink = "<a href='http://en.wikipedia.org/wiki/#{@correctAnswer}_language' target='_blank'>#{@correctAnswer}</a>"
-            $('.correct-answer').html(wikiLink)
-            return @gameOver() if @lives is 0            
+            return @gameOver() if @lives is 0 
             $('#main').hide()
             $('#wrong-guess').show()
         else
