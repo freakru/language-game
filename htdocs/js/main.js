@@ -52,10 +52,10 @@
     };
     this.guess = function(isCorrect) {
       var wikiLink;
+      wikiLink = "<a href='http://en.wikipedia.org/wiki/" + this.correctAnswer + "_language' target='_blank'>" + this.correctAnswer + "</a>";
+      $('.correct-answer').html(wikiLink);
       if (!isCorrect) {
         this.lives--;
-        wikiLink = "<a href='http://en.wikipedia.org/wiki/" + this.correctAnswer + "_language' target='_blank'>" + this.correctAnswer + "</a>";
-        $('.correct-answer').html(wikiLink);
         if (this.lives === 0) {
           return this.gameOver();
         }
