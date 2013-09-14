@@ -1,3 +1,24 @@
+(($) ->
+    $.fn.shuffle = ->
+        this.each =>
+            items = $(this).children()
+            if items.length
+                return $(this).html($.shuffle(items))
+            else
+                return this
+    
+    $.shuffle = (arr) ->
+        # From the end of the list to the beginning, pick element `i`.
+        for i in [arr.length-1..1]
+            # Choose random element `j` to the front of `i` to swap with.
+            j = Math.floor Math.random() * (i + 1)
+            # Swap `j` with `i`, using destructured assignment
+            [arr[i], arr[j]] = [arr[j], arr[i]]
+        # Return the shuffled array.
+        arr
+
+)(jQuery)
+
 App = ->
     
     @languages = [
@@ -386,9 +407,11 @@ App = ->
             continue if languages[i][1] in names
             names.push languages[i][1]
     
-        $("#btn-0").data 'correctAnswer', true
         for name, i in names
             $("#btn-#{i}").text name
+
+        $('#guess-buttons').shuffle();
+        $("#btn-0").data 'correctAnswer', true
     
         $('#language').text(text)
 
@@ -426,7 +449,7 @@ App = ->
     @run = () ->
         @newGame()
 
-        $('.guess').on 'click', (e) =>
+        $('body').on 'click', '.guess', (e) =>
             # e.currentTarget - avoid issue on using $(this) in coffe function
             isCorrect = $(e.currentTarget).data('correctAnswer')
             console.log isCorrect

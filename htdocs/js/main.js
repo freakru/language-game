@@ -3,6 +3,29 @@
   var App,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
+  (function($) {
+    $.fn.shuffle = function() {
+      var _this = this;
+      return this.each(function() {
+        var items;
+        items = $(_this).children();
+        if (items.length) {
+          return $(_this).html($.shuffle(items));
+        } else {
+          return _this;
+        }
+      });
+    };
+    return $.shuffle = function(arr) {
+      var i, j, _i, _ref, _ref1;
+      for (i = _i = _ref = arr.length - 1; _ref <= 1 ? _i <= 1 : _i >= 1; i = _ref <= 1 ? ++_i : --_i) {
+        j = Math.floor(Math.random() * (i + 1));
+        _ref1 = [arr[j], arr[i]], arr[i] = _ref1[0], arr[j] = _ref1[1];
+      }
+      return arr;
+    };
+  })(jQuery);
+
   App = function() {
     this.languages = [['aa', 'Afar'], ['ab', 'Abkhaz'], ['ae', 'Avestan'], ['afa', 'Luganda'], ['afa', 'Mawu'], ['ak', 'Akan'], ['akk', 'Akkadian'], ['alg', 'Abenaki'], ['alg', 'Algonquin'], ['alg', 'Mohican'], ['alg', 'Potawatomi'], ['alg', 'Powhatan'], ['am', 'Amharic'], ['an', 'Aragonese'], ['ang', 'Anglo'], ['ar', 'Darja'], ['arw', 'Arawak'], ['arc', 'Aramaic'], ['arn', 'Mapundungun'], ['art', 'Lojban'], ['as', 'Assamese'], ['ast', 'Asturian'], ['at', 'Haiti'], ['aus', 'Olkola'], ['aus', 'Wagiman'], ['aus', 'Warlpiri'], ['av', 'Avar'], ['ay', 'Aymara'], ['az', 'Azerbaijani'], ['ba', 'Bashkir'], ['bai', 'Dschang'], ['bas', 'Basaa'], ['bat', 'Sudovian'], ['btk', 'Batak'], ['be', 'Belarusian'], ['bem', 'Bemba'], ['bg', 'Bulgarian'], ['bh', 'Bihari'], ['bi', 'Bislama'], ['bm', 'Bambara'], ['bn', 'Bengali'], ['bnt', 'Bangi'], ['bnt', 'Ila'], ['bnt', 'Masaba'], ['bnt', 'Ntomba'], ['bo', 'Tibetan'], ['br', 'Breton'], ['ca', 'Catalan'], ['ca', 'Valencian'], ['cai', 'Ch'], ['cai', 'Garifuna'], ['cai', 'Guahibo'], ['cai', 'Miskito'], ['cai', 'Oluta'], ['cai', 'Jatibonicu'], ['cai', 'Zoque'], ['car', 'Caribe'], ['ce', 'Chechen'], ['ceb', 'Cebuano'], ['ch', 'Chamorro'], ['cho', 'Choctaw'], ['chk', 'Chuuk'], ['chy', 'Cheyenne'], ['co', 'Corsican'], ['cop', 'Coptic'], ['cpe', 'Afro-Seminole'], ['cpe', 'Gullah'], ['cpe', 'Jamaican'], ['cpe', 'Port'], ['cr', 'Cree'], ['crp', 'Fanagolo'], ['cu', 'Old'], ['cv', 'Chuvash'], ['cy', 'Welsh'], ['da', 'Danish'], ['de', 'German'], ['del', 'Lenape'], ['dua', 'Duala'], ['dra', 'Brahui'], ['dv', 'Divehi'], ['dz', 'Dzongkha'], ['ee', 'Ewe'], ['efi', 'Efik'], ['el', 'Griko'], ['en', 'English'], ['enm', 'Middle'], ['eo', 'Esperanto'], ['es', 'Spanish'], ['et', 'Estonian'], ['eu', 'Basque'], ['fa', 'Persian'], ['ff', 'Fula'], ['fi', 'Finnish'], ['fiu', 'Karelian'], ['fiu', 'Veps'], ['fj', 'Fijian'], ['fo', 'Faroese'], ['fon', 'Fon'], ['fr', 'French'], ['fro', 'Old'], ['fur', 'Friulian'], ['fy', 'Frisian'], ['ga', 'Irish'], ['gd', 'Scottish'], ['gem', 'Alsatian'], ['gem', 'Bavarian'], ['gem', 'Cimbrian'], ['gem', 'Kölsch'], ['gem', 'Mennonite'], ['gez', 'Ge'], ['gl', 'Galician'], ['gmh', 'Middle'], ['gn', 'Guarani'], ['gu', 'Gujarati'], ['gv', 'Manx'], ['ha', 'Hausa'], ['hi', 'Hindi'], ['hil', 'Hiligaynon'], ['hmn', 'Hmong'], ['ho', 'Hiri'], ['hr', 'Croatian'], ['hu', 'Hungarian'], ['hy', 'Armenian'], ['hz', 'Herero'], ['ia', 'Interlingua'], ['id', 'Indonesian'], ['ie', 'Interlingue'], ['ig', 'Igbo'], ['ii', 'Sichuan'], ['ik', 'Iñupiaq'], ['ilo', 'Ilocano'], ['inh', 'Ingush'], ['io', 'Ido'], ['ira', 'Dari'], ['ira', 'Ishkashmi'], ['iro', 'Mingo'], ['iro', 'Onandaga'], ['iro', 'Wyandot'], ['is', 'Old'], ['iu', 'Inuktitut'], ['jpr', 'Judeo-Persian'], ['jrb', 'Judeo-Arabic'], ['ja', 'Japanese'], ['jv', 'Javanese'], ['ka', 'Georgian'], ['kab', 'Kabyle'], ['kg', 'Kongo'], ['ki', 'Kikuyu'], ['kj', 'Kwanyama'], ['kk', 'Kazakh'], ['kl', 'Greenlandic'], ['kn', 'Kannada'], ['ko', 'Korean'], ['kos', 'Kosraean'], ['kr', 'Kanuri'], ['ks', 'Kashmiri'], ['ku', 'Kurdish'], ['kv', 'Komi'], ['kw', 'Cornish'], ['ky', 'Kirghiz'], ['la', 'Latin'], ['lad', 'Ladino'], ['lb', 'Luxemburgish'], ['lg', 'Ganda'], ['li', 'Limburgan'], ['ln', 'Lingala'], ['lo', 'Lao'], ['lol', 'Mongo-Nkundu'], ['loz', 'Lozi'], ['lt', 'Lithuanian'], ['lu', 'Luba-Katanga'], ['lv', 'Latvian'], ['man', 'Mandinka'], ['map', 'Bisaya'], ['map', 'Carolinian'], ['map', 'Marquesan'], ['map', 'Mokilese'], ['map', 'Ponapean'], ['map', 'Rotuman'], ['map', 'Roviana'], ['map', 'Sa'], ['map', 'Tarawan'], ['map', 'Woleaian'], ['mg', 'Malagasy'], ['mh', 'Marshallese'], ['mi', 'Maori'], ['mic', 'Micmac'], ['mis', 'Ainu'], ['mis', 'Chukchi'], ['mis', 'Etruscan'], ['mis', 'Nganasan'], ['mk', 'Macedonian'], ['ml', 'Malayalam'], ['mn', 'Mongolian'], ['mno', 'Manobo'], ['mo', 'Moldavian'], ['mos', 'Mossi'], ['mr', 'Marathi'], ['ms', 'Malay'], ['mt', 'Maltese'], ['mus', 'Muskogee'], ['my', 'Burmese'], ['myn', 'Kekchi'], ['na', 'Nauruan'], ['nah', 'Náhuatl'], ['nai', 'Alabama'], ['nai', 'Chickasaw'], ['nai', 'Chontal'], ['nai', 'Comanche'], ['nai', 'Hopi'], ['nai', 'Koasati'], ['nai', 'Nez'], ['nai', 'Papago-Pima'], ['nai', 'Seri'], ['nai', 'Wintu'], ['nd', 'North'], ['nds', 'Old'], ['ne', 'Nepali'], ['ng', 'Ndonga'], ['nic', 'Bobo'], ['nic', 'Boko'], ['nic', 'Buli'], ['no', 'Norwegian'], ['nv', 'Navajo'], ['ny', 'Chichewa'], ['oc', 'Occitan'], ['oj', 'Ojibwa'], ['oj', 'Ottawa'], ['om', 'Oromo'], ['or', 'Oriya'], ['os', 'Ossetic'], ['oto', 'Otomi'], ['pa', 'Panjabi'], ['paa', 'Ekari'], ['pag', 'Pangasinan'], ['pam', 'Pampangan'], ['pap', 'Papiamentu'], ['pau', 'Palauan'], ['phi', 'Ivatan'], ['phi', 'Magindanoan'], ['phi', 'Maranao'], ['pi', 'Pali'], ['ps', 'Pashto'], ['qu', 'Quechua'], ['rap', 'Rapanui'], ['rm', 'Raeto-Romance'], ['rn', 'Rundi'], ['ro', 'Romanian'], ['roa', 'Ladin'], ['roa', 'Ligurian'], ['roa', 'Lombard'], ['roa', 'Piedmontese'], ['roa', 'Romagnolo'], ['roa', 'Sicilian'], ['roa', 'Veneto'], ['rom', 'Romany'], ['rw', 'Kinyarwanda'], ['sa', 'Sanskrit'], ['sai', 'Mayangna'], ['sai', 'Nhengatu'], ['sai', 'Paumarí'], ['sco', 'Scots'], ['sd', 'Sindhi'], ['se', 'Kildi'], ['se', 'Northern'], ['sg', 'Sango'], ['si', 'Sinhalese'], ['sio', 'Lakota'], ['sio', 'Siouan'], ['sk', 'Slovak'], ['sl', 'Slovene'], ['sm', 'Samoan'], ['sn', 'Shona'], ['so', 'Somali'], ['sr', 'Serbian'], ['ss', 'Swati'], ['su', 'Sundanese'], ['ta', 'Tamil'], ['te', 'Telugu'], ['tg', 'Tajik'], ['th', 'Thai'], ['tk', 'Turkmen'], ['tl', 'Tagalog'], ['tli', 'Tlingit'], ['tn', 'Tswana'], ['to', 'Tonga'], ['ts', 'Tsonga'], ['tw', 'Twi'], ['ty', 'Tahitian'], ['ug', 'Uighur'], ['uz', 'Uzbek'], ['ve', 'Venda'], ['wa', 'Walloon'], ['wen', 'Upper'], ['wo', 'Wolof'], ['xh', 'Xhosa'], ['yi', 'Yiddish'], ['yo', 'Yoruba'], ['ypk', 'Yu'], ['za', 'Chuang'], ['zap', 'Zapotec'], ['zh', 'Chinese'], ['zu', 'Zulu']];
     this.languages = [['bla', 'Blackfoot'], ['bg', 'Bulgarian'], ['bs', 'Bosnian'], ['cs', 'Czech'], ['el', 'Greek'], ['en', 'English'], ['haw', 'Hawaiian'], ['he', 'Hebrew'], ['is', 'Icelandic'], ['it', 'Italian'], ['km', 'Khmer'], ['mn', 'Mongolian'], ['nl', 'Dutch'], ['pl', 'Polish'], ['pt', 'Portuguese'], ['ru', 'Russian'], ['sa', 'Sanskrit'], ['sq', 'Albanian'], ['sv', 'Swedish'], ['sw', 'Swahili'], ['tg', 'Tajik'], ['tr', 'Turkish'], ['tt', 'Tatar'], ['uk', 'Ukrainian'], ['vi', 'Vietnamese'], ['vo', 'Volapük']];
@@ -56,11 +79,12 @@
         }
         names.push(languages[i][1]);
       }
-      $("#btn-0").data('correctAnswer', true);
       for (i = _i = 0, _len = names.length; _i < _len; i = ++_i) {
         name = names[i];
         $("#btn-" + i).text(name);
       }
+      $('#guess-buttons').shuffle();
+      $("#btn-0").data('correctAnswer', true);
       $('#language').text(text);
       $('#main').show();
       $('#wrong-guess, #right-guess, #game-over').hide();
@@ -95,7 +119,7 @@
     this.run = function() {
       var _this = this;
       this.newGame();
-      $('.guess').on('click', function(e) {
+      $('body').on('click', '.guess', function(e) {
         var isCorrect;
         isCorrect = $(e.currentTarget).data('correctAnswer');
         console.log(isCorrect);
