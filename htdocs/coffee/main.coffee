@@ -452,7 +452,6 @@ App = ->
         $('body').on 'click', '.guess', (e) =>
             # e.currentTarget - avoid issue on using $(this) in coffe function
             isCorrect = $(e.currentTarget).data('correctAnswer')
-            console.log isCorrect
             @guess isCorrect
             return
 

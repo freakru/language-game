@@ -122,7 +122,6 @@
       $('body').on('click', '.guess', function(e) {
         var isCorrect;
         isCorrect = $(e.currentTarget).data('correctAnswer');
-        console.log(isCorrect);
         _this.guess(isCorrect);
       });
       $('.new-question').on('click', function(e) {
