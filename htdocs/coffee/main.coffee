@@ -410,7 +410,7 @@ App = ->
         for name, i in names
             $("#btn-#{i}").text name
 
-        $('#guess-buttons').shuffle();
+        $('#guess-buttons').shuffle()
         $("#btn-0").data 'correctAnswer', true
     
         $('#language').text(text)
@@ -436,8 +436,8 @@ App = ->
 
 
     @gameOver = () ->
-        $('#game-over').show();
-        $('#main').hide();
+        $('#game-over').show()
+        $('#main').hide()
         return false
 
 
